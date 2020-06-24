@@ -1,7 +1,9 @@
 package aramex.controller;
 
-import aramex.models.RateCalculatorRequest;
-import aramex.models.RateCalculatorResponse;
+import aramex.models.calculate_rate.RateCalculatorRequest;
+import aramex.models.calculate_rate.RateCalculatorResponse;
+import aramex.models.create_shipment.ShipmentCreationRequest;
+import aramex.models.create_shipment.ShipmentCreationResponse;
 import aramex.services.api.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +19,14 @@ public class ShippingController {
     @Autowired
     private ShippingService shippingService;
 
-    @PostMapping("/rate")
+    @PostMapping("/calculate_rate")
     public ResponseEntity<RateCalculatorResponse> rateCalculator(@RequestBody RateCalculatorRequest rateCalculatorRequest) {
         return ResponseEntity.ok(shippingService.rateCalculator(rateCalculatorRequest));
     }
+
+    @PostMapping("/create_shipment")
+    public ResponseEntity<ShipmentCreationResponse> createShipment(@RequestBody ShipmentCreationRequest shipmentCreationRequest) {
+        return ResponseEntity.ok(shippingService.createShipment(shipmentCreationRequest));
+    }
+
 }

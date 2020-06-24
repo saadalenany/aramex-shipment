@@ -1,16 +1,11 @@
-package aramex.models;
+package aramex.models.calculate_rate;
 
+import aramex.models.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class RateCalculatorRequest {
-
-    @JsonProperty("ClientInfo")
-    private ClientInfo clientInfo;
-
-    @JsonProperty("Transaction")
-    private Transaction transaction;
+public class RateCalculatorRequest extends Request {
 
     @JsonProperty("OriginAddress")
     private Address originAddress;

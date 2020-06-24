@@ -1,7 +1,7 @@
 package aramex.controller;
 
-import aramex.models.RateCalculatorRequest;
-import aramex.models.RateCalculatorResponse;
+import aramex.models.calculate_rate.RateCalculatorRequest;
+import aramex.models.calculate_rate.RateCalculatorResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -39,7 +39,7 @@ public class ShippingControllerTest {
         final RateCalculatorRequest rateRequest = createRateRequest();
         final RateCalculatorResponse successfulResponse = createSuccessfulResponse();
 
-        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/rate", rateRequest, RateCalculatorResponse.class);
+        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/calculate_rate", rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
         assertEquals(successfulResponse, rateCalculatorResponse);
@@ -52,7 +52,7 @@ public class ShippingControllerTest {
         String correctUserName = rateRequest.getClientInfo().getUserName();
         rateRequest.getClientInfo().setUserName("None");
 
-        RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/rate", rateRequest, RateCalculatorResponse.class);
+        RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/calculate_rate", rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
         assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
@@ -64,7 +64,7 @@ public class ShippingControllerTest {
         rateRequest.getClientInfo().setUserName(correctUserName);
         rateRequest.getClientInfo().setPassword("None");
 
-        rateCalculatorResponse = postForObject("/shipping/rate", rateRequest, RateCalculatorResponse.class);
+        rateCalculatorResponse = postForObject("/shipping/calculate_rate", rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
         assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
@@ -79,7 +79,7 @@ public class ShippingControllerTest {
         rateRequest.setDestinationAddress(null);
         rateRequest.setOriginAddress(null);
 
-        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/rate", rateRequest, RateCalculatorResponse.class);
+        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/calculate_rate", rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
         assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
@@ -93,7 +93,7 @@ public class ShippingControllerTest {
         final RateCalculatorRequest rateRequest = createRateRequest();
         rateRequest.setShipmentDetails(null);
 
-        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/rate", rateRequest, RateCalculatorResponse.class);
+        final RateCalculatorResponse rateCalculatorResponse = postForObject("/shipping/calculate_rate", rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
         assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
