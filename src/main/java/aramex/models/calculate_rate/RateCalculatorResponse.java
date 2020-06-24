@@ -5,10 +5,10 @@ import aramex.models.RateDetails;
 import aramex.models.Response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 public class RateCalculatorResponse extends Response {
 
     @JsonProperty("TotalAmount")
@@ -16,19 +16,4 @@ public class RateCalculatorResponse extends Response {
 
     @JsonProperty("RateDetails")
     private RateDetails rateDetails;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RateCalculatorResponse)) return false;
-        if (!super.equals(o)) return false;
-        RateCalculatorResponse that = (RateCalculatorResponse) o;
-        return totalAmount.equals(that.totalAmount) &&
-                rateDetails.equals(that.rateDetails);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), totalAmount, rateDetails);
-    }
 }
