@@ -2,6 +2,8 @@ package aramex.controller;
 
 import aramex.models.calculate_rate.RateCalculatorRequest;
 import aramex.models.calculate_rate.RateCalculatorResponse;
+import aramex.models.create_pickup.PickupCreationRequest;
+import aramex.models.create_pickup.PickupCreationResponse;
 import aramex.models.create_shipment.ShipmentCreationRequest;
 import aramex.models.create_shipment.ShipmentCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
@@ -32,8 +34,13 @@ public class ShippingController {
     }
 
     @PostMapping("/print_label")
-    public ResponseEntity<LabelPrintingResponse> createShipment(@RequestBody LabelPrintingRequest labelPrintingRequest) {
+    public ResponseEntity<LabelPrintingResponse> printLabel(@RequestBody LabelPrintingRequest labelPrintingRequest) {
         return ResponseEntity.ok(shippingService.printLabel(labelPrintingRequest));
+    }
+
+    @PostMapping("/create_pickup")
+    public ResponseEntity<PickupCreationResponse> createPick(@RequestBody PickupCreationRequest pickupCreationRequest) {
+        return ResponseEntity.ok(shippingService.createPickup(pickupCreationRequest));
     }
 
 }
