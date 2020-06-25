@@ -42,11 +42,6 @@ public class ShippingServiceImpl implements ShippingService {
 
     @Override
     public LabelPrintingResponse printLabel(LabelPrintingRequest labelPrintingRequest) {
-        try {
-            System.out.println(new ObjectMapper().writeValueAsString(labelPrintingRequest));
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
         return processRequestAndReturnResponse(URL_PRINT_LABEL, labelPrintingRequest, LabelPrintingResponse.class);
     }
 
