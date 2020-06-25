@@ -1,14 +1,14 @@
 package aramex.models;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
 public class LabelInfo {
 
-    @JsonAlias({"ReportId", "report_id"})
+    @JsonProperty("ReportID")
     private Integer reportId;
 
-    @JsonAlias({"ReportType", "report_type"})
+    @JsonProperty("ReportType")
     private String reportType;
 }

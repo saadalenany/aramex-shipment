@@ -5,10 +5,8 @@ import aramex.models.RateDetails;
 import aramex.models.Response;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Data
-@EqualsAndHashCode
 public class RateCalculatorResponse extends Response {
 
     @JsonProperty("TotalAmount")

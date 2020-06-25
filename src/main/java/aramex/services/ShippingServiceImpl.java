@@ -1,9 +1,12 @@
 package aramex.services;
 
+import aramex.models.Request;
 import aramex.models.calculate_rate.RateCalculatorRequest;
 import aramex.models.calculate_rate.RateCalculatorResponse;
 import aramex.models.create_shipment.ShipmentCreationRequest;
 import aramex.models.create_shipment.ShipmentCreationResponse;
+import aramex.models.print_label.LabelPrintingRequest;
+import aramex.models.print_label.LabelPrintingResponse;
 import aramex.services.api.ShippingService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,38 +20,45 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class ShippingServiceImpl implements ShippingService {
 
+    private static final String URL_RATE_CALCULATOR = "https://ws.dev.aramex.net/ShippingAPI.V2/RateCalculator/Service_1_0.svc/json/CalculateRate";
+
+    private static final String URL_CREATE_SHIPMENT = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/CreateShipments";
+
+    private static final String URL_PRINT_LABEL = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/PrintLabel";
+
     private RestTemplate restTemplate = new RestTemplate();
 
     private HttpHeaders headers = new HttpHeaders();
 
     @Override
     public RateCalculatorResponse rateCalculator(RateCalculatorRequest rateCalculatorRequest) {
-        String URL_CALCULATE_RATE = "https://ws.dev.aramex.net/ShippingAPI.V2/RateCalculator/Service_1_0.svc/json/CalculateRate";
-
-        headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        // Data attached to the request.
-        HttpEntity<RateCalculatorRequest> requestBody = new HttpEntity<>(rateCalculatorRequest, headers);
-
-        // Send request with POST method.
-        ResponseEntity<RateCalculatorResponse> result = restTemplate.postForEntity(URL_CALCULATE_RATE, requestBody, RateCalculatorResponse.class);
-
-        return result.getBody();
+        return processRequestAndReturnResponse(URL_RATE_CALCULATOR, rateCalculatorRequest, RateCalculatorResponse.class);
     }
 
     @Override
     public ShipmentCreationResponse createShipment(ShipmentCreationRequest shipmentCreationRequest) {
-        String URL_CREATE_SHIPMENT = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/CreateShipments";
+        return processRequestAndReturnResponse(URL_CREATE_SHIPMENT, shipmentCreationRequest, ShipmentCreationResponse.class);
+    }
 
+    @Override
+    public LabelPrintingResponse printLabel(LabelPrintingRequest labelPrintingRequest) {
+        try {
+            System.out.println(new ObjectMapper().writeValueAsString(labelPrintingRequest));
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return processRequestAndReturnResponse(URL_PRINT_LABEL, labelPrintingRequest, LabelPrintingResponse.class);
+    }
+
+    private <T> T processRequestAndReturnResponse(String url, Request data, Class<T> response) {
         headers.add("Accept", MediaType.APPLICATION_JSON_VALUE);
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         // Data attached to the request.
-        HttpEntity<ShipmentCreationRequest> requestBody = new HttpEntity<>(shipmentCreationRequest, headers);
+        HttpEntity<Request> requestBody = new HttpEntity<>(data, headers);
 
         // Send request with POST method.
-        ResponseEntity<ShipmentCreationResponse> result = restTemplate.postForEntity(URL_CREATE_SHIPMENT, requestBody, ShipmentCreationResponse.class);
+        ResponseEntity<T> result = restTemplate.postForEntity(url, requestBody, response);
 
         return result.getBody();
     }

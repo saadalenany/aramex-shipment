@@ -4,6 +4,8 @@ import aramex.models.calculate_rate.RateCalculatorRequest;
 import aramex.models.calculate_rate.RateCalculatorResponse;
 import aramex.models.create_shipment.ShipmentCreationRequest;
 import aramex.models.create_shipment.ShipmentCreationResponse;
+import aramex.models.print_label.LabelPrintingRequest;
+import aramex.models.print_label.LabelPrintingResponse;
 import aramex.services.api.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,11 @@ public class ShippingController {
     @PostMapping("/create_shipment")
     public ResponseEntity<ShipmentCreationResponse> createShipment(@RequestBody ShipmentCreationRequest shipmentCreationRequest) {
         return ResponseEntity.ok(shippingService.createShipment(shipmentCreationRequest));
+    }
+
+    @PostMapping("/print_label")
+    public ResponseEntity<LabelPrintingResponse> createShipment(@RequestBody LabelPrintingRequest labelPrintingRequest) {
+        return ResponseEntity.ok(shippingService.printLabel(labelPrintingRequest));
     }
 
 }
