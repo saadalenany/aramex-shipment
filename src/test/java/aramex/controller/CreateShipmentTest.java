@@ -38,7 +38,7 @@ public class CreateShipmentTest extends BaseTest {
         ShipmentCreationResponse shipmentCreationResponse = postForObject(URL, request, ShipmentCreationResponse.class);
 
         assertNotNull(shipmentCreationResponse);
-        assertEquals(Boolean.TRUE, shipmentCreationResponse.getHasErrors());
+        assertTrue(shipmentCreationResponse.getHasErrors());
         assertFalse(shipmentCreationResponse.getNotifications().isEmpty());
         assertEquals("ERR01", shipmentCreationResponse.getNotifications().get(0).getCode());
         assertEquals("ClientInfo - Invalid username or password", shipmentCreationResponse.getNotifications().get(0).getMessage());
@@ -50,7 +50,7 @@ public class CreateShipmentTest extends BaseTest {
         shipmentCreationResponse = postForObject(URL, request, ShipmentCreationResponse.class);
 
         assertNotNull(shipmentCreationResponse);
-        assertEquals(Boolean.TRUE, shipmentCreationResponse.getHasErrors());
+        assertTrue(shipmentCreationResponse.getHasErrors());
         assertFalse(shipmentCreationResponse.getNotifications().isEmpty());
         assertEquals("ERR01", shipmentCreationResponse.getNotifications().get(0).getCode());
         assertEquals("ClientInfo - Invalid username or password", shipmentCreationResponse.getNotifications().get(0).getMessage());

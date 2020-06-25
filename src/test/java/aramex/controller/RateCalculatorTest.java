@@ -37,7 +37,7 @@ public class RateCalculatorTest extends BaseTest {
         RateCalculatorResponse rateCalculatorResponse = postForObject(URL, rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
-        assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
+        assertTrue(rateCalculatorResponse.getHasErrors());
         assertFalse(rateCalculatorResponse.getNotifications().isEmpty());
         assertEquals("ERR01", rateCalculatorResponse.getNotifications().get(0).getCode());
         assertEquals("ClientInfo - Invalid username or password", rateCalculatorResponse.getNotifications().get(0).getMessage());
@@ -49,7 +49,7 @@ public class RateCalculatorTest extends BaseTest {
         rateCalculatorResponse = postForObject(URL, rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
-        assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
+        assertTrue(rateCalculatorResponse.getHasErrors());
         assertFalse(rateCalculatorResponse.getNotifications().isEmpty());
         assertEquals("ERR01", rateCalculatorResponse.getNotifications().get(0).getCode());
         assertEquals("ClientInfo - Invalid username or password", rateCalculatorResponse.getNotifications().get(0).getMessage());
@@ -64,7 +64,7 @@ public class RateCalculatorTest extends BaseTest {
         final RateCalculatorResponse rateCalculatorResponse = postForObject(URL, rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
-        assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
+        assertTrue(rateCalculatorResponse.getHasErrors());
         assertFalse(rateCalculatorResponse.getNotifications().isEmpty());
         assertEquals("OriginAddress - Address is empty", rateCalculatorResponse.getNotifications().get(0).getMessage());
         assertEquals("DestinationAddress - Address is empty", rateCalculatorResponse.getNotifications().get(1).getMessage());
@@ -78,7 +78,7 @@ public class RateCalculatorTest extends BaseTest {
         final RateCalculatorResponse rateCalculatorResponse = postForObject(URL, rateRequest, RateCalculatorResponse.class);
 
         assertNotNull(rateCalculatorResponse);
-        assertEquals(Boolean.TRUE, rateCalculatorResponse.getHasErrors());
+        assertTrue(rateCalculatorResponse.getHasErrors());
         assertFalse(rateCalculatorResponse.getNotifications().isEmpty());
         assertEquals("ShipmentDetails - Missing Shipment Details", rateCalculatorResponse.getNotifications().get(0).getMessage());
     }
