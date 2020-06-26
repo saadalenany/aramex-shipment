@@ -3,10 +3,12 @@ package aramex.services;
 import aramex.models.Request;
 import aramex.models.calculate_rate.RateCalculatorRequest;
 import aramex.models.calculate_rate.RateCalculatorResponse;
-import aramex.models.create_pickup.PickupCreationRequest;
-import aramex.models.create_pickup.PickupCreationResponse;
 import aramex.models.create_shipment.ShipmentCreationRequest;
 import aramex.models.create_shipment.ShipmentCreationResponse;
+import aramex.models.pickup.PickupCancellationRequest;
+import aramex.models.pickup.PickupCancellationResponse;
+import aramex.models.pickup.PickupCreationRequest;
+import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
 import aramex.services.api.ShippingService;
@@ -27,6 +29,8 @@ public class ShippingServiceImpl implements ShippingService {
     private static final String URL_PRINT_LABEL = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/PrintLabel";
 
     private static final String URL_CREATE_PICKUP = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/CreatePickup";
+
+    private static final String URL_CANCEL_PICKUP = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/CancelPickup";
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -50,6 +54,11 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public PickupCreationResponse createPickup(PickupCreationRequest pickupCreationRequest) {
         return processRequestAndReturnResponse(URL_CREATE_PICKUP, pickupCreationRequest, PickupCreationResponse.class);
+    }
+
+    @Override
+    public PickupCancellationResponse cancelPickup(PickupCancellationRequest pickupCancellationRequest) {
+        return processRequestAndReturnResponse(URL_CANCEL_PICKUP, pickupCancellationRequest, PickupCancellationResponse.class);
     }
 
     private <T> T processRequestAndReturnResponse(String url, Request data, Class<T> response) {

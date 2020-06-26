@@ -1,4 +1,4 @@
-package aramex.models.create_pickup;
+package aramex.models.pickup;
 
 import aramex.models.LabelInfo;
 import aramex.models.Pickup;

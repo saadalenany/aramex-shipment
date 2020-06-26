@@ -1,10 +1,9 @@
 package aramex.controller;
 
 import aramex.BaseTest;
-import aramex.models.create_pickup.PickupCreationRequest;
-import aramex.models.create_pickup.PickupCreationResponse;
+import aramex.models.pickup.PickupCreationRequest;
+import aramex.models.pickup.PickupCreationResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
 import java.time.LocalDateTime;

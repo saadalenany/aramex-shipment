@@ -2,10 +2,12 @@ package aramex.controller;
 
 import aramex.models.calculate_rate.RateCalculatorRequest;
 import aramex.models.calculate_rate.RateCalculatorResponse;
-import aramex.models.create_pickup.PickupCreationRequest;
-import aramex.models.create_pickup.PickupCreationResponse;
 import aramex.models.create_shipment.ShipmentCreationRequest;
 import aramex.models.create_shipment.ShipmentCreationResponse;
+import aramex.models.pickup.PickupCancellationRequest;
+import aramex.models.pickup.PickupCancellationResponse;
+import aramex.models.pickup.PickupCreationRequest;
+import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
 import aramex.services.api.ShippingService;
@@ -39,8 +41,12 @@ public class ShippingController {
     }
 
     @PostMapping("/create_pickup")
-    public ResponseEntity<PickupCreationResponse> createPick(@RequestBody PickupCreationRequest pickupCreationRequest) {
+    public ResponseEntity<PickupCreationResponse> createPickup(@RequestBody PickupCreationRequest pickupCreationRequest) {
         return ResponseEntity.ok(shippingService.createPickup(pickupCreationRequest));
     }
 
+    @PostMapping("/cancel_pickup")
+    public ResponseEntity<PickupCancellationResponse> cancelPickup(@RequestBody PickupCancellationRequest pickupCancellationRequest) {
+        return ResponseEntity.ok(shippingService.cancelPickup(pickupCancellationRequest));
+    }
 }
