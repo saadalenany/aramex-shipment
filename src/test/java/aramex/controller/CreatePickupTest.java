@@ -21,7 +21,7 @@ public class CreatePickupTest extends BaseTest {
     private static final String URL = "/shipping/create_pickup";
 
     @Test
-    public void testCreateShipment_success() throws Exception {
+    public void testCreatePickup_success() throws Exception {
         final PickupCreationRequest request = createPickupCreationRequest();
 
         String foreignHAWB = String.valueOf(System.currentTimeMillis());
@@ -30,14 +30,14 @@ public class CreatePickupTest extends BaseTest {
         final PickupCreationResponse successfulResponse = createSuccessfulResponse();
         successfulResponse.getProcessedPickup().getProcessedShipments().get(0).setForeignHAWB(foreignHAWB);
 
-        final PickupCreationResponse shipmentCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
+        final PickupCreationResponse pickupCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
 
-        assertNotNull(shipmentCreationResponse);
-        assertEquals(successfulResponse, shipmentCreationResponse);
+        assertNotNull(pickupCreationResponse);
+        assertEquals(successfulResponse, pickupCreationResponse);
     }
 
     @Test
-    public void testCreateShipment_invalidUsernameOrPassword() throws Exception {
+    public void testCreatePickup_invalidUsernameOrPassword() throws Exception {
         //---------------------TEST USERNAME-------------------
         final PickupCreationRequest request = createPickupCreationRequest();
         String correctUserName = request.getClientInfo().getUserName();
@@ -65,7 +65,7 @@ public class CreatePickupTest extends BaseTest {
     }
 
     @Test
-    public void testCreateShipment_invalidDates() throws Exception {
+    public void testCreatePickup_invalidDates() throws Exception {
         //----------------------CLOSING & LAST PICKUP TIME > READY TIME-----------------------
         final PickupCreationRequest request = createPickupCreationRequest();
 
@@ -85,17 +85,17 @@ public class CreatePickupTest extends BaseTest {
         PickupCreationResponse successfulResponse = createSuccessfulResponse();
         successfulResponse.getProcessedPickup().getProcessedShipments().get(0).setForeignHAWB(foreignHAWB);
 
-        PickupCreationResponse shipmentCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
+        PickupCreationResponse pickupCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
 
-        assertNotNull(shipmentCreationResponse);
-        assertTrue(shipmentCreationResponse.getHasErrors());
-        assertFalse(shipmentCreationResponse.getNotifications().isEmpty());
-        assertEquals("ERR35", shipmentCreationResponse.getNotifications().get(0).getCode());
-        assertEquals("Closing Time should be greater than the Ready Time", shipmentCreationResponse.getNotifications().get(0).getMessage());
-        assertEquals("ERR36", shipmentCreationResponse.getNotifications().get(1).getCode());
-        assertEquals("Last Pickup Time should be greater than the Ready Time", shipmentCreationResponse.getNotifications().get(1).getMessage());
-        assertEquals("ERR37", shipmentCreationResponse.getNotifications().get(2).getCode());
-        assertEquals("Ready Time should be within the business hours of the entity", shipmentCreationResponse.getNotifications().get(2).getMessage());
+        assertNotNull(pickupCreationResponse);
+        assertTrue(pickupCreationResponse.getHasErrors());
+        assertFalse(pickupCreationResponse.getNotifications().isEmpty());
+        assertEquals("ERR35", pickupCreationResponse.getNotifications().get(0).getCode());
+        assertEquals("Closing Time should be greater than the Ready Time", pickupCreationResponse.getNotifications().get(0).getMessage());
+        assertEquals("ERR36", pickupCreationResponse.getNotifications().get(1).getCode());
+        assertEquals("Last Pickup Time should be greater than the Ready Time", pickupCreationResponse.getNotifications().get(1).getMessage());
+        assertEquals("ERR37", pickupCreationResponse.getNotifications().get(2).getCode());
+        assertEquals("Ready Time should be within the business hours of the entity", pickupCreationResponse.getNotifications().get(2).getMessage());
 
         //----------------------READY TIME > MIN LEAD TIME-----------------------
         readyTime = ZonedDateTime.of(localDateTime.minusHours(3), ZoneId.systemDefault()).toInstant().toEpochMilli();
@@ -104,17 +104,17 @@ public class CreatePickupTest extends BaseTest {
         successfulResponse = createSuccessfulResponse();
         successfulResponse.getProcessedPickup().getProcessedShipments().get(0).setForeignHAWB(foreignHAWB);
 
-        shipmentCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
+        pickupCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
 
-        assertNotNull(shipmentCreationResponse);
-        assertTrue(shipmentCreationResponse.getHasErrors());
-        assertFalse(shipmentCreationResponse.getNotifications().isEmpty());
-        assertEquals("ERR38", shipmentCreationResponse.getNotifications().get(1).getCode());
-        assertEquals("Ready Time is earlier than minimum lead time", shipmentCreationResponse.getNotifications().get(1).getMessage());
+        assertNotNull(pickupCreationResponse);
+        assertTrue(pickupCreationResponse.getHasErrors());
+        assertFalse(pickupCreationResponse.getNotifications().isEmpty());
+        assertEquals("ERR38", pickupCreationResponse.getNotifications().get(1).getCode());
+        assertEquals("Ready Time is earlier than minimum lead time", pickupCreationResponse.getNotifications().get(1).getMessage());
     }
 
     @Test
-    public void testCreateShipment_invalidForeignHAWB() throws Exception {
+    public void testCreatePickup_invalidForeignHAWB() throws Exception {
         final PickupCreationRequest request = createPickupCreationRequest();
 
         String foreignHAWB = String.valueOf(System.currentTimeMillis());
@@ -123,18 +123,18 @@ public class CreatePickupTest extends BaseTest {
         final PickupCreationResponse successfulResponse = createSuccessfulResponse();
         successfulResponse.getProcessedPickup().getProcessedShipments().get(0).setForeignHAWB(foreignHAWB);
 
-        PickupCreationResponse shipmentCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
+        PickupCreationResponse pickupCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
 
-        assertNotNull(shipmentCreationResponse);
-        assertEquals(successfulResponse, shipmentCreationResponse);
+        assertNotNull(pickupCreationResponse);
+        assertEquals(successfulResponse, pickupCreationResponse);
 
-        shipmentCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
+        pickupCreationResponse = postForObject(URL, request, PickupCreationResponse.class);
 
-        assertNotNull(shipmentCreationResponse);
-        assertTrue(shipmentCreationResponse.getProcessedPickup().getProcessedShipments().get(0).isHasErrors());
-        assertFalse(shipmentCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().isEmpty());
-        assertEquals("ERR30", shipmentCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().get(0).getCode());
-        assertEquals("ForeignHAWB - Another shipment with the same Foreign AWB Number already exists", shipmentCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().get(0).getMessage());
+        assertNotNull(pickupCreationResponse);
+        assertTrue(pickupCreationResponse.getProcessedPickup().getProcessedShipments().get(0).isHasErrors());
+        assertFalse(pickupCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().isEmpty());
+        assertEquals("ERR30", pickupCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().get(0).getCode());
+        assertEquals("ForeignHAWB - Another shipment with the same Foreign AWB Number already exists", pickupCreationResponse.getProcessedPickup().getProcessedShipments().get(0).getNotifications().get(0).getMessage());
     }
 
 
