@@ -10,6 +10,8 @@ import aramex.models.pickup.PickupCreationRequest;
 import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
+import aramex.models.scheduled_delivery.ScheduledDeliveryRequest;
+import aramex.models.scheduled_delivery.ScheduledDeliveryResponse;
 import aramex.models.shipment_range.ShipmentNumberRangeRequest;
 import aramex.models.shipment_range.ShipmentNumberRangeResponse;
 import aramex.services.api.ShippingService;
@@ -60,5 +62,10 @@ public class ShippingController {
     @PostMapping("/last_shipment")
     public ResponseEntity<ShipmentNumberRangeResponse> getLastShipment(@RequestBody ShipmentNumberRangeRequest shipmentNumberRangeRequest) {
         return ResponseEntity.ok(shippingService.getLastShipment(shipmentNumberRangeRequest));
+    }
+
+    @PostMapping("/schedule_delivery")
+    public ResponseEntity<ScheduledDeliveryResponse> scheduleDelivery(@RequestBody ScheduledDeliveryRequest scheduledDeliveryRequest) {
+        return ResponseEntity.ok(shippingService.scheduleDelivery(scheduledDeliveryRequest));
     }
 }

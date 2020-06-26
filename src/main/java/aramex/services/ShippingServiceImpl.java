@@ -11,6 +11,8 @@ import aramex.models.pickup.PickupCreationRequest;
 import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
+import aramex.models.scheduled_delivery.ScheduledDeliveryRequest;
+import aramex.models.scheduled_delivery.ScheduledDeliveryResponse;
 import aramex.models.shipment_range.ShipmentNumberRangeRequest;
 import aramex.models.shipment_range.ShipmentNumberRangeResponse;
 import aramex.services.api.ShippingService;
@@ -37,6 +39,8 @@ public class ShippingServiceImpl implements ShippingService {
     private static final String URL_RESERVE_SHIPMENT = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/ReserveShipmentNumberRange";
 
     private static final String URL_GET_LAST_SHIPMENT = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/GetLastShipmentsNumbersRange";
+
+    private static final String URL_SCHEDULE_DELIVERY = "https://ws.dev.aramex.net/ShippingAPI.V2/Shipping/Service_1_0.svc/json/ScheduleDelivery";
 
     private RestTemplate restTemplate = new RestTemplate();
 
@@ -75,6 +79,11 @@ public class ShippingServiceImpl implements ShippingService {
     @Override
     public ShipmentNumberRangeResponse getLastShipment(ShipmentNumberRangeRequest shipmentNumberRangeRequest) {
         return processRequestAndReturnResponse(URL_GET_LAST_SHIPMENT, shipmentNumberRangeRequest, ShipmentNumberRangeResponse.class);
+    }
+
+    @Override
+    public ScheduledDeliveryResponse scheduleDelivery(ScheduledDeliveryRequest scheduledDeliveryRequest) {
+        return processRequestAndReturnResponse(URL_SCHEDULE_DELIVERY, scheduledDeliveryRequest, ScheduledDeliveryResponse.class);
     }
 
     private <T> T processRequestAndReturnResponse(String url, Request data, Class<T> response) {
