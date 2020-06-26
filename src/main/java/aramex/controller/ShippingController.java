@@ -10,6 +10,8 @@ import aramex.models.pickup.PickupCreationRequest;
 import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
+import aramex.models.reserve_shipment.RangeReservationRequest;
+import aramex.models.reserve_shipment.RangeReservationResponse;
 import aramex.services.api.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -48,5 +50,10 @@ public class ShippingController {
     @PostMapping("/cancel_pickup")
     public ResponseEntity<PickupCancellationResponse> cancelPickup(@RequestBody PickupCancellationRequest pickupCancellationRequest) {
         return ResponseEntity.ok(shippingService.cancelPickup(pickupCancellationRequest));
+    }
+
+    @PostMapping("/reserve_shipment")
+    public ResponseEntity<RangeReservationResponse> reserveShipment(@RequestBody RangeReservationRequest rangeReservationRequest) {
+        return ResponseEntity.ok(shippingService.reserveShipment(rangeReservationRequest));
     }
 }
