@@ -1,11 +1,11 @@
-package aramex.models.reserve_shipment;
+package aramex.models.shipment_range;
 
 import aramex.models.Request;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class RangeReservationRequest extends Request {
+public class ShipmentNumberRangeRequest extends Request {
 
     @JsonProperty("Entity")
     private String entity;

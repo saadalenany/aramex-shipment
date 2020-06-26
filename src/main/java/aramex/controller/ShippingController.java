@@ -10,8 +10,8 @@ import aramex.models.pickup.PickupCreationRequest;
 import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
-import aramex.models.reserve_shipment.RangeReservationRequest;
-import aramex.models.reserve_shipment.RangeReservationResponse;
+import aramex.models.shipment_range.ShipmentNumberRangeRequest;
+import aramex.models.shipment_range.ShipmentNumberRangeResponse;
 import aramex.services.api.ShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,7 +53,12 @@ public class ShippingController {
     }
 
     @PostMapping("/reserve_shipment")
-    public ResponseEntity<RangeReservationResponse> reserveShipment(@RequestBody RangeReservationRequest rangeReservationRequest) {
-        return ResponseEntity.ok(shippingService.reserveShipment(rangeReservationRequest));
+    public ResponseEntity<ShipmentNumberRangeResponse> reserveShipment(@RequestBody ShipmentNumberRangeRequest shipmentNumberRangeRequest) {
+        return ResponseEntity.ok(shippingService.reserveShipment(shipmentNumberRangeRequest));
+    }
+
+    @PostMapping("/last_shipment")
+    public ResponseEntity<ShipmentNumberRangeResponse> getLastShipment(@RequestBody ShipmentNumberRangeRequest shipmentNumberRangeRequest) {
+        return ResponseEntity.ok(shippingService.getLastShipment(shipmentNumberRangeRequest));
     }
 }

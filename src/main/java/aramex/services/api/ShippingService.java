@@ -10,8 +10,8 @@ import aramex.models.pickup.PickupCreationRequest;
 import aramex.models.pickup.PickupCreationResponse;
 import aramex.models.print_label.LabelPrintingRequest;
 import aramex.models.print_label.LabelPrintingResponse;
-import aramex.models.reserve_shipment.RangeReservationRequest;
-import aramex.models.reserve_shipment.RangeReservationResponse;
+import aramex.models.shipment_range.ShipmentNumberRangeRequest;
+import aramex.models.shipment_range.ShipmentNumberRangeResponse;
 
 public interface ShippingService {
 
@@ -25,5 +25,7 @@ public interface ShippingService {
 
     public PickupCancellationResponse cancelPickup(PickupCancellationRequest pickupCancellationRequest);
 
-    public RangeReservationResponse reserveShipment(RangeReservationRequest rangeReservationRequest);
+    public ShipmentNumberRangeResponse reserveShipment(ShipmentNumberRangeRequest shipmentNumberRangeRequest);
+
+    public ShipmentNumberRangeResponse getLastShipment(ShipmentNumberRangeRequest shipmentNumberRangeRequest);
 }
