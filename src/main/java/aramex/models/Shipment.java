@@ -47,7 +47,7 @@ public class Shipment {
     @JsonProperty("OperationsInstructions")
     private String operationsInstructions;
 
-    @JsonProperty("AccountsInstructions")
+    @JsonProperty("AccountingInstrcutions")
     private String accountsInstructions;
 
     @JsonProperty("Details")
