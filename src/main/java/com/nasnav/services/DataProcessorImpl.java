@@ -11,8 +11,10 @@ import com.opencsv.exceptions.CsvDataTypeMismatchException;
 import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 import com.poiji.bind.Poiji;
 import com.poiji.exception.PoijiExcelType;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,8 +32,8 @@ public class DataProcessorImpl implements DataProcessor {
             //Parse the Excel file into list of DataProcess POJO class
             final String extension = Optional.ofNullable(multipartFile.getOriginalFilename())
                     .filter(f -> f.contains(".")).map(f -> f.substring(multipartFile.getOriginalFilename()
-                            .lastIndexOf(".") + 1)).orElseThrow(() -> new RuntimeException(
-                                    String.format(ErrorMessage.FILE_NO_EXTENSION, multipartFile.getOriginalFilename())));
+                            .lastIndexOf(".") + 1)).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                            String.format(ErrorMessage.FILE_NO_EXTENSION, multipartFile.getOriginalFilename())));
 
             List<DataProcess> dataProcesses;
             if (extension.equalsIgnoreCase("XLSX")) {
@@ -39,7 +41,7 @@ public class DataProcessorImpl implements DataProcessor {
             } else if (extension.equalsIgnoreCase("XLS")) {
                 dataProcesses = Poiji.fromExcel(multipartFile.getInputStream(), PoijiExcelType.XLS, DataProcess.class);
             } else {
-                throw new RuntimeException(String.format(ErrorMessage.UPLOADED_FILE_TYPE, multipartFile.getOriginalFilename()));
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.UPLOADED_FILE_TYPE, multipartFile.getOriginalFilename()));
             }
 
             //Generate the UUID based on the file original name
@@ -49,14 +51,14 @@ public class DataProcessorImpl implements DataProcessor {
             return uuid;
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(ErrorMessage.ERROR_UPLOADING_PARSING);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ErrorMessage.ERROR_UPLOADING_PARSING);
         }
     }
 
     @Override
     public File returnCsv(String uuid) {
         if (!InMemory.getDataProcess().containsKey(uuid)) {
-            throw new RuntimeException(String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
         }
 
         try {
@@ -77,7 +79,7 @@ public class DataProcessorImpl implements DataProcessor {
             return file;
         } catch (IOException | CsvRequiredFieldEmptyException | CsvDataTypeMismatchException e) {
             e.printStackTrace();
-            throw new RuntimeException(ErrorMessage.ERROR_GENERATING_WRITING_DOWNLOADING);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ErrorMessage.ERROR_GENERATING_WRITING_DOWNLOADING);
         }
     }
 
