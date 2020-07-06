@@ -1,14 +1,14 @@
 package com.nasnav.controller;
 
-import com.nasnav.BaseTest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.nasnav.models.create_shipment.ShipmentCreationRequest;
 import com.nasnav.models.create_shipment.ShipmentCreationResponse;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.nasnav.utils.BaseTest;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreateShipmentTest extends BaseTest {
 

@@ -1,6 +1,6 @@
 package com.nasnav.controller;
 
-import com.nasnav.BaseTest;
+import com.nasnav.utils.BaseTest;
 import com.nasnav.models.calculate_rate.RateCalculatorRequest;
 import com.nasnav.models.calculate_rate.RateCalculatorResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;

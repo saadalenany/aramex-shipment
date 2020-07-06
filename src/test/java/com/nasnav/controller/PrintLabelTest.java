@@ -1,6 +1,6 @@
 package com.nasnav.controller;
 
-import com.nasnav.BaseTest;
+import com.nasnav.utils.BaseTest;
 import com.nasnav.models.print_label.LabelPrintingRequest;
 import com.nasnav.models.print_label.LabelPrintingResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;

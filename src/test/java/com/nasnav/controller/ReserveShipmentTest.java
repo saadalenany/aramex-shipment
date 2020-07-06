@@ -1,6 +1,6 @@
 package com.nasnav.controller;
 
-import com.nasnav.BaseTest;
+import com.nasnav.utils.BaseTest;
 import com.nasnav.models.shipment_range.ShipmentNumberRangeRequest;
 import com.nasnav.models.shipment_range.ShipmentNumberRangeResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
