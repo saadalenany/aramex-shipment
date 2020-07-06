@@ -66,6 +66,7 @@ public class CreatePickupTest extends BaseTest {
         assertEquals("ClientInfo - Invalid username or password", pickupCreationResponse.getNotifications().get(0).getMessage());
     }
 
+    @Ignore
     @Test
     public void testCreatePickup_invalidDates() throws Exception {
         //----------------------CLOSING & LAST PICKUP TIME > READY TIME-----------------------
