@@ -2,15 +2,9 @@ package com.nasnav.services;
 
 import com.nasnav.ErrorMessage;
 import com.nasnav.InMemory;
-import com.nasnav.models.data_process.DataProcess;
 import com.nasnav.services.api.DataProcessor;
-import com.opencsv.CSVWriter;
-import com.opencsv.bean.StatefulBeanToCsv;
-import com.opencsv.bean.StatefulBeanToCsvBuilder;
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
-import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
-import com.poiji.bind.Poiji;
-import com.poiji.exception.PoijiExcelType;
+import com.nasnav.services.api.ExcelParser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,12 +13,17 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class DataProcessorImpl implements DataProcessor {
+
+    @Autowired
+    private ExcelParser excelParser;
 
     @Override
     public String uploadXlsx(MultipartFile multipartFile) {
@@ -35,11 +34,9 @@ public class DataProcessorImpl implements DataProcessor {
                             .lastIndexOf(".") + 1)).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                             String.format(ErrorMessage.FILE_NO_EXTENSION, multipartFile.getOriginalFilename())));
 
-            List<DataProcess> dataProcesses;
-            if (extension.equalsIgnoreCase("XLSX")) {
-                dataProcesses = Poiji.fromExcel(multipartFile.getInputStream(), PoijiExcelType.XLSX, DataProcess.class);
-            } else if (extension.equalsIgnoreCase("XLS")) {
-                dataProcesses = Poiji.fromExcel(multipartFile.getInputStream(), PoijiExcelType.XLS, DataProcess.class);
+            List<String[]> dataProcesses;
+            if (extension.equalsIgnoreCase("XLSX") || extension.equalsIgnoreCase("XLS")) {
+                dataProcesses = excelParser.parseExcelToList(multipartFile.getInputStream());
             } else {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.UPLOADED_FILE_TYPE, multipartFile.getOriginalFilename()));
             }
@@ -61,26 +58,21 @@ public class DataProcessorImpl implements DataProcessor {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
         }
 
+        File file = new File(String.format("generated_by_%s.csv", uuid));
+        // Creating writer class to generate csv file
         try {
-            File file = new File(String.format("generated_by_%s.csv", uuid));
-            // Creating writer class to generate csv file
-            FileWriter writer = new FileWriter(file);
-
-            // Creating StatefulBeanToCsv object
-            StatefulBeanToCsv beanWriter = new StatefulBeanToCsvBuilder(writer).withSeparator(CSVWriter.DEFAULT_SEPARATOR).build();
-
-            // Write list to StatefulBeanToCsv object
-            beanWriter.write(InMemory.getDataProcess().get(uuid));
-
-            // closing the writer object
-            writer.flush();
+            FileWriter writer = new FileWriter(file.getName());
+            final List<String[]> list = InMemory.getDataProcess().get(uuid);
+            for (String[] arr : list) {
+                String collect = String.join(",", arr);
+                writer.write(collect);
+                writer.write("\n"); // newline
+            }
             writer.close();
-
-            return file;
-        } catch (IOException | CsvRequiredFieldEmptyException | CsvDataTypeMismatchException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, ErrorMessage.ERROR_GENERATING_WRITING_DOWNLOADING);
         }
+        return file;
     }
 
 }
