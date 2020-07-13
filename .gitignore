@@ -1,6 +1,5 @@
 HELP.md
-/target/
-target/
+target
 !.mvn/wrapper/maven-wrapper.jar
 *.class
 *.jar
@@ -19,18 +18,18 @@ target/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea/
+.idea
 *.iws
 *.iml
 *.ipr
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
+nbproject/private
+nbbuild
+dist
+nbdist
+.nb-gradle
+build
 
 ### VS Code ###
-.vscode/
+.vscode
