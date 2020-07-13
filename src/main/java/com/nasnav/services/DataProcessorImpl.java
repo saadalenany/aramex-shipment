@@ -58,6 +58,36 @@ public class DataProcessorImpl implements DataProcessor {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
         }
 
+        return generateCsvFromList(uuid);
+    }
+
+    @Override
+    public File assignColumn(String uuid, String name, Integer index) {
+        if (!InMemory.getDataProcess().containsKey(uuid)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
+        }
+
+        final DataInfo dataInfo = InMemory.getDataProcess().get(uuid);
+        ColumnEnum columnEnum;
+        try {
+            columnEnum = ColumnEnum.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.INVALID_VALUE_ENUM, name));
+        }
+        if (dataInfo.isHasHeader()) {
+            dataInfo.getData().get(0)[index-1] = columnEnum.name();
+        } else {
+            String[] header = new String[dataInfo.getData().get(0).length];
+            header[index-1] = columnEnum.name();
+
+            dataInfo.getData().add(0, header);
+            dataInfo.setHasHeader(true);
+        }
+
+        return generateCsvFromList(uuid);
+    }
+
+    private File generateCsvFromList(String uuid) {
         File file = new File(String.format("generated_by_%s.csv", uuid));
         // Creating writer class to generate csv file
         try {
@@ -74,21 +104,4 @@ public class DataProcessorImpl implements DataProcessor {
         }
         return file;
     }
-
-    @Override
-    public File assignColumn(String uuid, String name, Integer index) {
-        if (!InMemory.getDataProcess().containsKey(uuid)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
-        }
-
-        final DataInfo dataInfo = InMemory.getDataProcess().get(uuid);
-        final ColumnEnum columnEnum = ColumnEnum.valueOf(name);
-        if (dataInfo.isHasHeader()) {
-
-        } else {
-
-        }
-        return null;
-    }
-
 }

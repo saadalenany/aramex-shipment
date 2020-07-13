@@ -51,7 +51,7 @@ public class DataProcessingController {
         return null;
     }
 
-    @PostMapping("/{uuid}/assign")
+    @GetMapping("/{uuid}/assign")
     public ResponseEntity<Resource> assignColumn(@PathVariable("uuid") String uuid,
                                                  @RequestParam("column_name") String name,
                                                  @RequestParam("column_index") Integer index) {
