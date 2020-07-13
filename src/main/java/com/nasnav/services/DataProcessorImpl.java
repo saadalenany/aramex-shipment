@@ -76,12 +76,13 @@ public class DataProcessorImpl implements DataProcessor {
     }
 
     @Override
-    public File assignColumn(String uuid, ColumnEnum name, Integer index) {
+    public File assignColumn(String uuid, String name, Integer index) {
         if (!InMemory.getDataProcess().containsKey(uuid)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
         }
 
         final DataInfo dataInfo = InMemory.getDataProcess().get(uuid);
+        final ColumnEnum columnEnum = ColumnEnum.valueOf(name);
         if (dataInfo.isHasHeader()) {
 
         } else {

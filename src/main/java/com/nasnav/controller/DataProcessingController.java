@@ -53,7 +53,7 @@ public class DataProcessingController {
 
     @PostMapping("/{uuid}/assign")
     public ResponseEntity<Resource> assignColumn(@PathVariable("uuid") String uuid,
-                                                 @RequestParam("column_name") ColumnEnum name,
+                                                 @RequestParam("column_name") String name,
                                                  @RequestParam("column_index") Integer index) {
         final File file = dataProcessor.assignColumn(uuid, name, index);
         HttpHeaders headers = new HttpHeaders();
