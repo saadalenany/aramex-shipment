@@ -2,6 +2,8 @@ package com.nasnav.services;
 
 import com.nasnav.ErrorMessage;
 import com.nasnav.InMemory;
+import com.nasnav.models.data_process.ColumnEnum;
+import com.nasnav.models.data_process.DataInfo;
 import com.nasnav.services.api.DataProcessor;
 import com.nasnav.services.api.ExcelParser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,9 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class DataProcessorImpl implements DataProcessor {
@@ -34,7 +34,7 @@ public class DataProcessorImpl implements DataProcessor {
                             .lastIndexOf(".") + 1)).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                             String.format(ErrorMessage.FILE_NO_EXTENSION, multipartFile.getOriginalFilename())));
 
-            List<String[]> dataProcesses;
+            DataInfo dataProcesses;
             if (extension.equalsIgnoreCase("XLSX") || extension.equalsIgnoreCase("XLS")) {
                 dataProcesses = excelParser.parseExcelToList(multipartFile.getInputStream());
             } else {
@@ -62,7 +62,7 @@ public class DataProcessorImpl implements DataProcessor {
         // Creating writer class to generate csv file
         try {
             FileWriter writer = new FileWriter(file.getName());
-            final List<String[]> list = InMemory.getDataProcess().get(uuid);
+            final List<String[]> list = InMemory.getDataProcess().get(uuid).getData();
             for (String[] arr : list) {
                 String collect = String.join(",", arr);
                 writer.write(collect);
@@ -73,6 +73,21 @@ public class DataProcessorImpl implements DataProcessor {
             e.printStackTrace();
         }
         return file;
+    }
+
+    @Override
+    public File assignColumn(String uuid, ColumnEnum name, Integer index) {
+        if (!InMemory.getDataProcess().containsKey(uuid)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format(ErrorMessage.KEY_NOT_FOUND_IN_MAP, uuid));
+        }
+
+        final DataInfo dataInfo = InMemory.getDataProcess().get(uuid);
+        if (dataInfo.isHasHeader()) {
+
+        } else {
+
+        }
+        return null;
     }
 
 }

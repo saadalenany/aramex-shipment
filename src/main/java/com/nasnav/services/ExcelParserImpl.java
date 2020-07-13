@@ -1,5 +1,6 @@
 package com.nasnav.services;
 
+import com.nasnav.models.data_process.DataInfo;
 import com.nasnav.services.api.ExcelParser;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,8 @@ public class ExcelParserImpl implements ExcelParser {
     }
 
     @Override
-    public List<String[]> parseExcelToList(InputStream inputStream) {
+    public DataInfo parseExcelToList(InputStream inputStream) {
+        DataInfo dataInfo = new DataInfo();
         List<String[]> list = new ArrayList<>();
         try {
             Workbook myBook = WorkbookFactory.create(inputStream);
@@ -54,6 +56,9 @@ public class ExcelParserImpl implements ExcelParser {
             if (pairs != null) {
                 rowNum = (Integer) pairs.get("row");
                 list.add((String[]) pairs.get("header"));
+                dataInfo.setHasHeader(true);
+            } else {
+                dataInfo.setHasHeader(false);
             }
             Iterator<Row> rowIterator = mySheet.iterator(); //create a cursor called iterator to all rows in sheet
             Row r;
@@ -93,6 +98,7 @@ public class ExcelParserImpl implements ExcelParser {
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        return list;
+        dataInfo.setData(list);
+        return dataInfo;
     }
 }

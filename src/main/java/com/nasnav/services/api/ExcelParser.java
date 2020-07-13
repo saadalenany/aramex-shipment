@@ -1,9 +1,10 @@
 package com.nasnav.services.api;
 
+import com.nasnav.models.data_process.DataInfo;
+
 import java.io.InputStream;
-import java.util.List;
 
 public interface ExcelParser {
 
-    List<String[]> parseExcelToList(InputStream inputStream);
+    DataInfo parseExcelToList(InputStream inputStream);
 }
