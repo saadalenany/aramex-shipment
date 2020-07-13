@@ -5,18 +5,6 @@
 	"order": [],
 	"folders": [
 		{
-			"name": "Data Processor",
-			"description": "",
-			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
-			"order": [
-				"afcea283-e04a-baf3-9e0e-4251128f1c6f",
-				"81f18fe3-14d1-b579-c051-7300cb6878bf"
-			],
-			"owner": "5132921",
-			"folders_order": [],
-			"id": "c5267f6c-1c28-41dc-cb31-99392a6b1423"
-		},
-		{
 			"name": "Shipping",
 			"description": "",
 			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
@@ -36,8 +24,7 @@
 		}
 	],
 	"folders_order": [
-		"a5d505b4-8be7-d8a0-1af4-379f65bf9508",
-		"c5267f6c-1c28-41dc-cb31-99392a6b1423"
+		"a5d505b4-8be7-d8a0-1af4-379f65bf9508"
 	],
 	"timestamp": 1593031501157,
 	"owner": "5132921",
@@ -152,36 +139,6 @@
 			"rawModeData": "{\n  \"ClientInfo\": {\n    \"UserName\": \"reem@reem.com\",\n    \"Password\": \"123456789\",\n    \"Version\": \"v1\",\n    \"AccountNumber\": \"20016\",\n    \"AccountPin\": \"331421\",\n    \"AccountEntity\": \"AMM\",\n    \"AccountCountryCode\": \"JO\",\n    \"Source\": 24\n  },\n  \"Comments\": \"Test\",\n  \"PickupGUID\": \"8e119eb2-c8f1-4640-a9e3-01d8bb904df0\",\n  \"Transaction\": {\n    \"Reference1\": \"\",\n    \"Reference2\": \"\",\n    \"Reference3\": \"\",\n    \"Reference4\": \"\",\n    \"Reference5\": \"\"\n  }\n}"
 		},
 		{
-			"id": "81f18fe3-14d1-b579-c051-7300cb6878bf",
-			"headers": "",
-			"headerData": [],
-			"url": "localhost:8080/dataprocess/getcsv?uid=e1bad612-0c95-31eb-9f7d-cc4a8138d5be",
-			"folder": "c5267f6c-1c28-41dc-cb31-99392a6b1423",
-			"queryParams": [
-				{
-					"key": "uid",
-					"value": "e1bad612-0c95-31eb-9f7d-cc4a8138d5be",
-					"equals": true,
-					"description": "",
-					"enabled": true
-				}
-			],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "GET",
-			"data": null,
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1593884599531,
-			"name": "Get CSV",
-			"description": "",
-			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
-			"responses": []
-		},
-		{
 			"id": "8bafc8b6-ca1c-d258-8812-79a530486f08",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
 			"headerData": [
@@ -284,12 +241,12 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1593134961418,
+			"time": 1594074923120,
 			"name": "Create Pickup",
 			"description": "",
 			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
 			"responses": [],
-			"rawModeData": "{\n  \"ClientInfo\": {\n    \"UserName\": \"testingapi@aramex.com\",\n    \"Password\": \"R123456789$r\",\n    \"Version\": \"v1\",\n    \"AccountNumber\": \"20016\",\n    \"AccountPin\": \"331421\",\n    \"AccountEntity\": \"AMM\",\n    \"AccountCountryCode\": \"JO\",\n    \"Source\": 24\n  },\n  \"LabelInfo\": {\n    \"ReportID\": 9201,\n    \"ReportType\": \"URL\"\n  },\n  \"Pickup\": {\n    \"PickupAddress\": {\n      \"Line1\": \"Test\",\n      \"Line2\": \"\",\n      \"Line3\": \"\",\n      \"City\": \"Amman\",\n      \"StateOrProvinceCode\": \"\",\n      \"PostCode\": \"\",\n      \"CountryCode\": \"JO\",\n      \"Longitude\": 0,\n      \"Latitude\": 0,\n      \"BuildingNumber\": null,\n      \"BuildingName\": null,\n      \"Floor\": null,\n      \"Apartment\": null,\n      \"POBox\": null,\n      \"Description\": null\n    },\n    \"PickupContact\": {\n      \"Department\": \"\",\n      \"PersonName\": \"test\",\n      \"Title\": \"\",\n      \"CompanyName\": \"test\",\n      \"PhoneNumber1\": \"1111111111111\",\n      \"PhoneNumber1Ext\": \"\",\n      \"PhoneNumber2\": \"\",\n      \"PhoneNumber2Ext\": \"\",\n      \"FaxNumber\": \"\",\n      \"CellPhone\": \"11111111111111\",\n      \"EmailAddress\": \"test@test.com\",\n      \"Type\": \"\"\n    },\n    \"PickupLocation\": \"test\",\n    \"PickupDate\": \"/Date(1593119257529-0500)/\",\n    \"ReadyTime\": \"/Date(1693118259529-0500)/\",\n    \"LastPickupTime\": \"/Date(1693118269529-0500)/\",\n    \"ClosingTime\": \"/Date(1793118257529-0500)/\",\n    \"Comments\": \"\",\n    \"Reference1\": \"001\",\n    \"Reference2\": \"\",\n    \"Vehicle\": \"\",\n    \"Shipments\": [\n      {\n        \"Reference1\": \"123\",\n        \"Reference2\": \"\",\n        \"Reference3\": \"\",\n        \"Shipper\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"20016\",\n          \"PartyAddress\": {\n            \"Line1\": \"Test\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"Amman\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"JO\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": null,\n            \"BuildingName\": null,\n            \"Floor\": null,\n            \"Apartment\": null,\n            \"POBox\": null,\n            \"Description\": null\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"Test\",\n            \"Title\": \"\",\n            \"CompanyName\": \"Test\",\n            \"PhoneNumber1\": \"5555\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"5555\",\n            \"EmailAddress\": \"m@m.com\",\n            \"Type\": \"\"\n          }\n        },\n        \"Consignee\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"\",\n          \"PartyAddress\": {\n            \"Line1\": \"Test\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"Dubai\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"AE\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": \"\",\n            \"BuildingName\": \"\",\n            \"Floor\": \"\",\n            \"Apartment\": \"\",\n            \"POBox\": null,\n            \"Description\": \"\"\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"Test\",\n            \"Title\": \"\",\n            \"CompanyName\": \"Test\",\n            \"PhoneNumber1\": \"555\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"555\",\n            \"EmailAddress\": \"f@f.com\",\n            \"Type\": \"\"\n          }\n        },\n        \"ThirdParty\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"\",\n          \"PartyAddress\": {\n            \"Line1\": \"\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": null,\n            \"BuildingName\": null,\n            \"Floor\": null,\n            \"Apartment\": null,\n            \"POBox\": null,\n            \"Description\": null\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"\",\n            \"Title\": \"\",\n            \"CompanyName\": \"\",\n            \"PhoneNumber1\": \"\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"\",\n            \"EmailAddress\": \"\",\n            \"Type\": \"\"\n          }\n        },\n        \"ShippingDateTime\": \"/Date(1593138492805-0500)/\",\n        \"DueDate\": \"/Date(1593138492805-0500)/\",\n        \"Comments\": \"Comments ...\",\n        \"PickupLocation\": \"Reception\",\n        \"OperationsInstructions\": \"Fragile\",\n        \"AccountingInstrcutions\": \"Get us a discount please\",\n        \"Details\": {\n          \"Dimensions\": null,\n          \"ActualWeight\": {\n            \"Unit\": \"KG\",\n            \"Value\": 0.5\n          },\n          \"ChargeableWeight\": null,\n          \"DescriptionOfGoods\": \"Docs\",\n          \"GoodsOriginCountry\": \"JO\",\n          \"NumberOfPieces\": 1,\n          \"ProductGroup\": \"EXP\",\n          \"ProductType\": \"PDX\",\n          \"PaymentType\": \"P\",\n          \"PaymentOptions\": \"\",\n          \"CustomsValueAmount\": null,\n          \"CashOnDeliveryAmount\": null,\n          \"InsuranceAmount\": null,\n          \"CashAdditionalAmount\": null,\n          \"CashAdditionalAmountDescription\": \"\",\n          \"CollectAmount\": null,\n          \"Services\": \"\",\n          \"Items\": [],\n          \"DeliveryInstructions\": null\n        },\n        \"Attachments\": [],\n        \"ForeignHAWB\": \"12212121212224\",\n        \"TransportType \": 0,\n        \"PickupGUID\": null,\n        \"Number\": \"\",\n        \"ScheduledDelivery\": null\n      }\n    ],\n    \"PickupItems\": [\n      {\n        \"ProductGroup\": \"EXP\",\n        \"ProductType\": \"PDX\",\n        \"NumberOfShipments\": 1,\n        \"PackageType\": \"Box\",\n        \"Payment\": \"P\",\n        \"ShipmentWeight\": {\n          \"Unit\": \"KG\",\n          \"Value\": 0.5\n        },\n        \"ShipmentVolume\": null,\n        \"NumberOfPieces\": 1,\n        \"CashAmount\": null,\n        \"ExtraCharges\": null,\n        \"ShipmentDimensions\": {\n          \"Length\": 0,\n          \"Width\": 0,\n          \"Height\": 0,\n          \"Unit\": \"\"\n        },\n        \"Comments\": \"Test\"\n      }\n    ],\n    \"Status\": \"Ready\",\n    \"ExistingShipments\": null,\n    \"Branch\": \"\",\n    \"RouteCode\": \"\"\n  },\n  \"Transaction\": {\n    \"Reference1\": \"\",\n    \"Reference2\": \"\",\n    \"Reference3\": \"\",\n    \"Reference4\": \"\",\n    \"Reference5\": \"\"\n  }\n}"
+			"rawModeData": "{\n  \"ClientInfo\": {\n    \"UserName\": \"testingapi@aramex.com\",\n    \"Password\": \"R123456789$r\",\n    \"Version\": \"v1\",\n    \"AccountNumber\": \"20016\",\n    \"AccountPin\": \"331421\",\n    \"AccountEntity\": \"AMM\",\n    \"AccountCountryCode\": \"JO\",\n    \"Source\": 24\n  },\n  \"LabelInfo\": {\n    \"ReportID\": 9201,\n    \"ReportType\": \"URL\"\n  },\n  \"Pickup\": {\n    \"PickupAddress\": {\n      \"Line1\": \"Test\",\n      \"Line2\": \"\",\n      \"Line3\": \"\",\n      \"City\": \"Amman\",\n      \"StateOrProvinceCode\": \"\",\n      \"PostCode\": \"\",\n      \"CountryCode\": \"JO\",\n      \"Longitude\": 0,\n      \"Latitude\": 0,\n      \"BuildingNumber\": null,\n      \"BuildingName\": null,\n      \"Floor\": null,\n      \"Apartment\": null,\n      \"POBox\": null,\n      \"Description\": null\n    },\n    \"PickupContact\": {\n      \"Department\": \"\",\n      \"PersonName\": \"test\",\n      \"Title\": \"\",\n      \"CompanyName\": \"test\",\n      \"PhoneNumber1\": \"1111111111111\",\n      \"PhoneNumber1Ext\": \"\",\n      \"PhoneNumber2\": \"\",\n      \"PhoneNumber2Ext\": \"\",\n      \"FaxNumber\": \"\",\n      \"CellPhone\": \"11111111111111\",\n      \"EmailAddress\": \"test@test.com\",\n      \"Type\": \"\"\n    },\n    \"PickupLocation\": \"test\",\n    \"PickupDate\": \"/Date(1593994282390-0500)/\",\n    \"ReadyTime\": \"/Date(1688602380000-0500)/\",\n    \"LastPickupTime\": \"/Date(1688602980000-0500)/\",\n    \"ClosingTime\": \"/Date(1783297380000-0500)/\",\n    \"Comments\": \"\",\n    \"Reference1\": \"001\",\n    \"Reference2\": \"\",\n    \"Vehicle\": \"\",\n    \"Shipments\": [\n      {\n        \"Reference1\": \"123\",\n        \"Reference2\": \"\",\n        \"Reference3\": \"\",\n        \"Shipper\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"20016\",\n          \"PartyAddress\": {\n            \"Line1\": \"Test\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"Amman\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"JO\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": null,\n            \"BuildingName\": null,\n            \"Floor\": null,\n            \"Apartment\": null,\n            \"POBox\": null,\n            \"Description\": null\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"Test\",\n            \"Title\": \"\",\n            \"CompanyName\": \"Test\",\n            \"PhoneNumber1\": \"5555\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"5555\",\n            \"EmailAddress\": \"m@m.com\",\n            \"Type\": \"\"\n          }\n        },\n        \"Consignee\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"\",\n          \"PartyAddress\": {\n            \"Line1\": \"Test\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"Dubai\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"AE\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": \"\",\n            \"BuildingName\": \"\",\n            \"Floor\": \"\",\n            \"Apartment\": \"\",\n            \"POBox\": null,\n            \"Description\": \"\"\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"Test\",\n            \"Title\": \"\",\n            \"CompanyName\": \"Test\",\n            \"PhoneNumber1\": \"555\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"555\",\n            \"EmailAddress\": \"f@f.com\",\n            \"Type\": \"\"\n          }\n        },\n        \"ThirdParty\": {\n          \"Reference1\": \"\",\n          \"Reference2\": \"\",\n          \"AccountNumber\": \"\",\n          \"PartyAddress\": {\n            \"Line1\": \"\",\n            \"Line2\": \"\",\n            \"Line3\": \"\",\n            \"City\": \"\",\n            \"StateOrProvinceCode\": \"\",\n            \"PostCode\": \"\",\n            \"CountryCode\": \"\",\n            \"Longitude\": 0,\n            \"Latitude\": 0,\n            \"BuildingNumber\": null,\n            \"BuildingName\": null,\n            \"Floor\": null,\n            \"Apartment\": null,\n            \"POBox\": null,\n            \"Description\": null\n          },\n          \"Contact\": {\n            \"Department\": \"\",\n            \"PersonName\": \"\",\n            \"Title\": \"\",\n            \"CompanyName\": \"\",\n            \"PhoneNumber1\": \"\",\n            \"PhoneNumber1Ext\": \"\",\n            \"PhoneNumber2\": \"\",\n            \"PhoneNumber2Ext\": \"\",\n            \"FaxNumber\": \"\",\n            \"CellPhone\": \"\",\n            \"EmailAddress\": \"\",\n            \"Type\": \"\"\n          }\n        },\n        \"ShippingDateTime\": \"/Date(1593138492805-0500)/\",\n        \"DueDate\": \"/Date(1593138492805-0500)/\",\n        \"Comments\": \"Comments ...\",\n        \"PickupLocation\": \"Reception\",\n        \"OperationsInstructions\": \"Fragile\",\n        \"AccountingInstrcutions\": \"Get us a discount please\",\n        \"Details\": {\n          \"Dimensions\": null,\n          \"ActualWeight\": {\n            \"Unit\": \"KG\",\n            \"Value\": 0.5\n          },\n          \"ChargeableWeight\": null,\n          \"DescriptionOfGoods\": \"Docs\",\n          \"GoodsOriginCountry\": \"JO\",\n          \"NumberOfPieces\": 1,\n          \"ProductGroup\": \"EXP\",\n          \"ProductType\": \"PDX\",\n          \"PaymentType\": \"P\",\n          \"PaymentOptions\": \"\",\n          \"CustomsValueAmount\": null,\n          \"CashOnDeliveryAmount\": null,\n          \"InsuranceAmount\": null,\n          \"CashAdditionalAmount\": null,\n          \"CashAdditionalAmountDescription\": \"\",\n          \"CollectAmount\": null,\n          \"Services\": \"\",\n          \"Items\": [],\n          \"DeliveryInstructions\": null\n        },\n        \"Attachments\": [],\n        \"ForeignHAWB\": \"12212121212225\",\n        \"TransportType \": 0,\n        \"PickupGUID\": null,\n        \"Number\": \"\",\n        \"ScheduledDelivery\": null\n      }\n    ],\n    \"PickupItems\": [\n      {\n        \"ProductGroup\": \"EXP\",\n        \"ProductType\": \"PDX\",\n        \"NumberOfShipments\": 1,\n        \"PackageType\": \"Box\",\n        \"Payment\": \"P\",\n        \"ShipmentWeight\": {\n          \"Unit\": \"KG\",\n          \"Value\": 0.5\n        },\n        \"ShipmentVolume\": null,\n        \"NumberOfPieces\": 1,\n        \"CashAmount\": null,\n        \"ExtraCharges\": null,\n        \"ShipmentDimensions\": {\n          \"Length\": 0,\n          \"Width\": 0,\n          \"Height\": 0,\n          \"Unit\": \"\"\n        },\n        \"Comments\": \"Test\"\n      }\n    ],\n    \"Status\": \"Ready\",\n    \"ExistingShipments\": null,\n    \"Branch\": \"\",\n    \"RouteCode\": \"\"\n  },\n  \"Transaction\": {\n    \"Reference1\": \"\",\n    \"Reference2\": \"\",\n    \"Reference3\": \"\",\n    \"Reference4\": \"\",\n    \"Reference5\": \"\"\n  }\n}"
 		},
 		{
 			"id": "ad007c8d-25fe-8616-97fe-e5dc90e0b04c",
@@ -326,42 +283,6 @@
 			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
 			"responses": [],
 			"rawModeData": "{\n  \"ClientInfo\": {\n    \"UserName\": \"reem@reem.com\",\n    \"Password\": \"123456789\",\n    \"Version\": \"v1\",\n    \"AccountNumber\": \"20016\",\n    \"AccountPin\": \"331421\",\n    \"AccountEntity\": \"AMM\",\n    \"AccountCountryCode\": \"JO\",\n    \"Source\": 24\n  },\n  \"Entity\": \"AMM\",\n  \"ProductGroup\": \"EXP\",\n  \"Transaction\": {\n    \"Reference1\": \"\",\n    \"Reference2\": \"\",\n    \"Reference3\": \"\",\n    \"Reference4\": \"\",\n    \"Reference5\": \"\"\n  }\n}"
-		},
-		{
-			"id": "afcea283-e04a-baf3-9e0e-4251128f1c6f",
-			"headers": "",
-			"headerData": [
-				{
-					"key": "",
-					"value": "",
-					"description": "",
-					"enabled": false
-				}
-			],
-			"url": "localhost:8080/dataprocess/loadxls",
-			"queryParams": [],
-			"preRequestScript": null,
-			"pathVariables": {},
-			"pathVariableData": [],
-			"method": "POST",
-			"data": [
-				{
-					"key": "file",
-					"value": "xxx",
-					"description": "",
-					"type": "file",
-					"enabled": true
-				}
-			],
-			"dataMode": "params",
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1593900772999,
-			"name": "Load XLS",
-			"description": "",
-			"collectionId": "17d74fe3-5136-fa15-104f-a30a61288c0c",
-			"responses": []
 		},
 		{
 			"id": "dbb98ab5-1e57-c809-19ce-8ae734a40690",
